@@ -22,6 +22,13 @@ interface StateProps {
 }
 
 class CommunityTemplateContentsUnconnected extends PureComponent<StateProps> {
+  private safelyAccessLength = collection => {
+    if (Array.isArray(collection)) {
+      return collection.length
+    }
+    return 0
+  }
+
   render() {
     const {activeCommunityTemplate} = this.props
     if (!Object.keys(activeCommunityTemplate).length) {
@@ -41,7 +48,7 @@ class CommunityTemplateContentsUnconnected extends PureComponent<StateProps> {
       >
         <CommunityTemplateListGroup
           title="Dashboards"
-          count={activeCommunityTemplate.dashboards.length}
+          count={this.safelyAccessLength(activeCommunityTemplate.dashboards)}
         >
           {Array.isArray(activeCommunityTemplate.dashboards) &&
             activeCommunityTemplate.dashboards.map(dashboard => {
@@ -58,7 +65,9 @@ class CommunityTemplateContentsUnconnected extends PureComponent<StateProps> {
         </CommunityTemplateListGroup>
         <CommunityTemplateListGroup
           title="Telegraf Configurations"
-          count={activeCommunityTemplate.telegrafConfigs.length}
+          count={this.safelyAccessLength(
+            activeCommunityTemplate.telegrafConfigs
+          )}
         >
           {Array.isArray(activeCommunityTemplate.telegrafConfigs) &&
             activeCommunityTemplate.telegrafConfigs.map(telegrafConfig => {
@@ -73,7 +82,7 @@ class CommunityTemplateContentsUnconnected extends PureComponent<StateProps> {
         </CommunityTemplateListGroup>
         <CommunityTemplateListGroup
           title="Buckets"
-          count={activeCommunityTemplate.buckets.length}
+          count={this.safelyAccessLength(activeCommunityTemplate.buckets)}
         >
           {Array.isArray(activeCommunityTemplate.buckets) &&
             activeCommunityTemplate.buckets.map(bucket => {
@@ -88,7 +97,7 @@ class CommunityTemplateContentsUnconnected extends PureComponent<StateProps> {
         </CommunityTemplateListGroup>
         <CommunityTemplateListGroup
           title="Checks"
-          count={activeCommunityTemplate.checks.length}
+          count={this.safelyAccessLength(activeCommunityTemplate.checks)}
         >
           {Array.isArray(activeCommunityTemplate.checks) &&
             activeCommunityTemplate.checks.map(check => {
@@ -103,7 +112,7 @@ class CommunityTemplateContentsUnconnected extends PureComponent<StateProps> {
         </CommunityTemplateListGroup>
         <CommunityTemplateListGroup
           title="Variables"
-          count={activeCommunityTemplate.variables.length}
+          count={this.safelyAccessLength(activeCommunityTemplate.variables)}
         >
           {Array.isArray(activeCommunityTemplate.variables) &&
             activeCommunityTemplate.variables.map(variable => {
@@ -120,7 +129,9 @@ class CommunityTemplateContentsUnconnected extends PureComponent<StateProps> {
         </CommunityTemplateListGroup>
         <CommunityTemplateListGroup
           title="Notification Rules"
-          count={activeCommunityTemplate.notificationRules.length}
+          count={this.safelyAccessLength(
+            activeCommunityTemplate.notificationRules
+          )}
         >
           {Array.isArray(activeCommunityTemplate.notificationRules) &&
             activeCommunityTemplate.notificationRules.map(notificationRule => {
@@ -135,7 +146,7 @@ class CommunityTemplateContentsUnconnected extends PureComponent<StateProps> {
         </CommunityTemplateListGroup>
         <CommunityTemplateListGroup
           title="Labels"
-          count={activeCommunityTemplate.labels.length}
+          count={this.safelyAccessLength(activeCommunityTemplate.labels)}
         >
           {Array.isArray(activeCommunityTemplate.labels) &&
             activeCommunityTemplate.labels.map(label => {
